@@ -13,7 +13,7 @@ public class AddressBookFrame extends JFrame {
     public AddressBookFrame() {
         // Initialize the JFrame
         setTitle("AddressBook by CianciuStyles");
-        setSize(800, 600);
+        setSize(480, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

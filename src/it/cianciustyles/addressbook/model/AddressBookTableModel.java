@@ -17,7 +17,7 @@ public class AddressBookTableModel extends AbstractTableModel {
         columnNames.add("Last Name");
         columnNames.add("Telephone Number");
 
-        contacts = new Vector<>();
+        contacts = PersistenceLayer.loadContacts();
     }
 
     @Override
@@ -63,15 +63,18 @@ public class AddressBookTableModel extends AbstractTableModel {
     public void addContact(Contact p) {
         contacts.add(p);
         fireTableRowsInserted(contacts.size() - 1, contacts.size() - 1);
+        PersistenceLayer.saveContacts(contacts);
     }
 
     public void editContact(Contact p, int index) {
         contacts.set(index, p);
         fireTableRowsUpdated(index, index);
+        PersistenceLayer.saveContacts(contacts);
     }
 
     public void deleteContact(int index) {
         contacts.remove(index);
         fireTableRowsDeleted(index, index);
+        PersistenceLayer.saveContacts(contacts);
     }
 }

@@ -59,4 +59,8 @@ public class Contact {
     public String toString() {
         return String.format("First Name: %s, Last Name: %s, Telephone: %s", firstName, lastName, telephoneNumber);
     }
+
+    public String toSaveFormat() {
+        return String.format("%s;%s;%s;%s;%d", firstName, lastName, address, telephoneNumber, age);
+    }
 }

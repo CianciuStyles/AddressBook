@@ -26,7 +26,7 @@ public class NewEditContactFrame extends JFrame {
         mode = p == null ? MODE.NEW_CONTACT : MODE.EDIT_CONTACT;
 
         setTitle(mode == MODE.NEW_CONTACT ? "New Contact" : "Edit Contact");
-        setSize(480, 640);
+        setSize(350, 200);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Container pane = getContentPane();
         BoxLayout boxLayout = new BoxLayout(pane, BoxLayout.PAGE_AXIS);
@@ -45,19 +45,15 @@ public class NewEditContactFrame extends JFrame {
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
+            Contact newContact = new Contact(firstNameText.getText(),
+                                             lastNameText.getText(),
+                                             addressText.getText(),
+                                             telephoneNumberText.getText(),
+                                             Integer.parseInt(ageText.getText()));
+
             if (mode == MODE.NEW_CONTACT) {
-                Contact newContact = new Contact(firstNameText.getText(),
-                                                 lastNameText.getText(),
-                                                 telephoneNumberText.getText(),
-                                                 addressText.getText(),
-                                                 Integer.parseInt(ageText.getText()));
                 tableModel.addContact(newContact);
             } else if (mode == MODE.EDIT_CONTACT) {
-                Contact newContact = new Contact(firstNameText.getText(),
-                                                 lastNameText.getText(),
-                                                 telephoneNumberText.getText(),
-                                                 addressText.getText(),
-                                                 Integer.parseInt(ageText.getText()));
                 tableModel.editContact(newContact, contactIndex);
             }
 
