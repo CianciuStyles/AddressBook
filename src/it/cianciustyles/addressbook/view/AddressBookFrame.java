@@ -1,12 +1,10 @@
 package it.cianciustyles.addressbook.view;
 
-import com.sun.codemodel.internal.JOp;
 import it.cianciustyles.addressbook.model.AddressBookTableModel;
 import it.cianciustyles.addressbook.model.Contact;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
@@ -60,7 +58,7 @@ public class AddressBookFrame extends JFrame {
     public AddressBookFrame() {
         // Initialize the JFrame
         setTitle("AddressBook");
-        setSize(480, 500);
+        setSize(480, 520);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,14 +66,14 @@ public class AddressBookFrame extends JFrame {
         BoxLayout boxLayout = new BoxLayout(pane, BoxLayout.PAGE_AXIS);
         pane.setLayout(boxLayout);
 
+        // Add the JMenu to the JFrame
+        addMenu(this);
+
         // Add the JTable to the JFrame
         addTable(pane);
 
         // Add the buttons to the JFrame
         addButtons(pane);
-
-        // Add the JMenu to the JFrame
-        addMenu(this);
     }
 
     private void addButtons(Container pane) {
