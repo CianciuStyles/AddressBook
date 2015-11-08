@@ -42,13 +42,31 @@ public class AddressBookFrame extends JFrame {
         JButton editButton = new JButton("Edit contact...");
         editButton.addActionListener(e -> {
             int rowSelected = addressBookTable.getSelectedRow();
-            Contact contact = tableModel.getContact(rowSelected);
+            if (rowSelected == -1) {
+                JOptionPane.showMessageDialog(this, "Please select a contact to be edited!", "Edit Contact...", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
+            Contact contact = tableModel.getContact(rowSelected);
             NewEditContactFrame editContactFrame = new NewEditContactFrame(tableModel, contact, addressBookTable.getSelectedRow());
             editContactFrame.setVisible(true);
         });
 
         JButton deleteButton = new JButton("Delete contact");
+        deleteButton.addActionListener(e -> {
+            int rowSelected = addressBookTable.getSelectedRow();
+            if (rowSelected == -1) {
+                JOptionPane.showMessageDialog(this, "Please select a contact to be deleted!", "Delete Contact...", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            Contact selectedContact = tableModel.getContact(rowSelected);
+            String firstName = selectedContact.getFirstName();
+            String lastName = selectedContact.getLastName();
+            int result = JOptionPane.showConfirmDialog(this, String.format("Are you you want to delete %s %s?", firstName, lastName), "Delete Contact...", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION)
+                tableModel.deleteContact(rowSelected);
+        });
 
         controlsContainer.add(newButton);
         controlsContainer.add(editButton);

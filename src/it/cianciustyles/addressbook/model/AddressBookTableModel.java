@@ -69,4 +69,9 @@ public class AddressBookTableModel extends AbstractTableModel {
         contacts.set(index, p);
         fireTableRowsUpdated(index, index);
     }
+
+    public void deleteContact(int index) {
+        contacts.remove(index);
+        fireTableRowsDeleted(index, index);
+    }
 }

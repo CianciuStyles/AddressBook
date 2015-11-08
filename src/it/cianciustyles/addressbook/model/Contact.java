@@ -57,10 +57,6 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "First Name: " + getFirstName() +
-                ", Last Name: " + getLastName() +
-                ", Telephone Number: " + getTelephoneNumber() +
-                ", Address: " + getAddress() +
-                ", Age: " + getAge();
+        return String.format("First Name: %s, Last Name: %s, Telephone: %s", firstName, lastName, telephoneNumber);
     }
 }
