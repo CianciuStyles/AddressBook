@@ -4,6 +4,7 @@ import it.cianciustyles.addressbook.model.AddressBookTableModel;
 import it.cianciustyles.addressbook.model.Contact;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class NewEditContactFrame extends JFrame {
@@ -26,7 +27,7 @@ public class NewEditContactFrame extends JFrame {
         mode = p == null ? MODE.NEW_CONTACT : MODE.EDIT_CONTACT;
 
         setTitle(mode == MODE.NEW_CONTACT ? "New Contact" : "Edit Contact");
-        setSize(350, 200);
+        setSize(350, 220);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Container pane = getContentPane();
         BoxLayout boxLayout = new BoxLayout(pane, BoxLayout.PAGE_AXIS);
@@ -45,12 +46,16 @@ public class NewEditContactFrame extends JFrame {
 
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
-            Contact newContact = new Contact(firstNameText.getText(),
-                                             lastNameText.getText(),
-                                             addressText.getText(),
-                                             telephoneNumberText.getText(),
-                                             Integer.parseInt(ageText.getText()));
+            String firstName = firstNameText.getText();
+            String lastName = lastNameText.getText();
+            String address = addressText.getText();
+            String telephoneNumber = telephoneNumberText.getText();
+            String age = ageText.getText();
 
+            if (firstName.isEmpty() || lastName.isEmpty() || address.isEmpty() || telephoneNumber.isEmpty() || age.isEmpty())
+                return;
+
+            Contact newContact = new Contact(firstName, lastName, address, telephoneNumber, Integer.parseInt(age));
             if (mode == MODE.NEW_CONTACT) {
                 tableModel.addContact(newContact);
             } else if (mode == MODE.EDIT_CONTACT) {
@@ -73,6 +78,7 @@ public class NewEditContactFrame extends JFrame {
 
     public void addContactInfo(Container pane, Contact p) {
         JPanel contactInfoPanel = new JPanel();
+        contactInfoPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         GridLayout gridLayout = new GridLayout(5, 2);
         contactInfoPanel.setLayout(gridLayout);
 
