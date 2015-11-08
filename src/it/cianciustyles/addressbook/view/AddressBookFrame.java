@@ -79,6 +79,8 @@ public class AddressBookFrame extends JFrame {
         JPanel tableContainer = new JPanel();
         tableModel = new AddressBookTableModel();
         addressBookTable = new JTable(tableModel);
+        addressBookTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
         JScrollPane scrollPane = new JScrollPane(addressBookTable);
         addressBookTable.setFillsViewportHeight(true);
         tableContainer.add(scrollPane);
