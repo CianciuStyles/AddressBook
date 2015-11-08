@@ -1,7 +1,7 @@
 package it.cianciustyles.addressbook.view;
 
 import it.cianciustyles.addressbook.model.AddressBookTableModel;
-import it.cianciustyles.addressbook.model.Persona;
+import it.cianciustyles.addressbook.model.Contact;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,7 +42,7 @@ public class AddressBookFrame extends JFrame {
         JButton editButton = new JButton("Edit contact...");
         editButton.addActionListener(e -> {
             int rowSelected = addressBookTable.getSelectedRow();
-            Persona contact = tableModel.getContact(rowSelected);
+            Contact contact = tableModel.getContact(rowSelected);
 
             NewEditContactFrame editContactFrame = new NewEditContactFrame(tableModel, contact, addressBookTable.getSelectedRow());
             editContactFrame.setVisible(true);

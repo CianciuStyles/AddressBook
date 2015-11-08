@@ -5,7 +5,7 @@ import java.util.Vector;
 
 public class AddressBookTableModel extends AbstractTableModel {
     private Vector<String> columnNames;
-    private Vector<Persona> contacts;
+    private Vector<Contact> contacts;
 
     public static final int FIRST_NAME_INDEX = 0;
     public static final int LAST_NAME_INDEX = 1;
@@ -32,15 +32,15 @@ public class AddressBookTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Persona currentContact = contacts.get(rowIndex);
+        Contact currentContact = contacts.get(rowIndex);
 
         switch (columnIndex) {
             case FIRST_NAME_INDEX:
-                return currentContact.getNome();
+                return currentContact.getFirstName();
             case LAST_NAME_INDEX:
-                return currentContact.getCognome();
+                return currentContact.getLastName();
             case TELEPHONE_NUMBER_INDEX:
-                return currentContact.getTelefono();
+                return currentContact.getTelephoneNumber();
             default:
                 return null;
         }
@@ -56,12 +56,17 @@ public class AddressBookTableModel extends AbstractTableModel {
         return String.class;
     }
 
-    public Persona getContact(int index) {
+    public Contact getContact(int index) {
         return contacts.get(index);
     }
 
-    public void addContact(Persona p) {
-        this.contacts.add(p);
+    public void addContact(Contact p) {
+        contacts.add(p);
         fireTableRowsInserted(contacts.size() - 1, contacts.size() - 1);
+    }
+
+    public void editContact(Contact p, int index) {
+        contacts.set(index, p);
+        fireTableRowsUpdated(index, index);
     }
 }

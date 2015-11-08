@@ -1,7 +1,7 @@
 package it.cianciustyles.addressbook.view;
 
 import it.cianciustyles.addressbook.model.AddressBookTableModel;
-import it.cianciustyles.addressbook.model.Persona;
+import it.cianciustyles.addressbook.model.Contact;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class NewEditContactFrame extends JFrame {
     private MODE mode;
 
 
-    public NewEditContactFrame(AddressBookTableModel tm, Persona p, int ci) {
+    public NewEditContactFrame(AddressBookTableModel tm, Contact p, int ci) {
         tableModel = tm;
         contactIndex = ci;
         mode = p == null ? MODE.NEW_CONTACT : MODE.EDIT_CONTACT;
@@ -46,15 +46,23 @@ public class NewEditContactFrame extends JFrame {
         JButton saveButton = new JButton("Save");
         saveButton.addActionListener(e -> {
             if (mode == MODE.NEW_CONTACT) {
-                Persona newContact = new Persona(firstNameText.getText(),
+                Contact newContact = new Contact(firstNameText.getText(),
                                                  lastNameText.getText(),
                                                  telephoneNumberText.getText(),
                                                  addressText.getText(),
                                                  Integer.parseInt(ageText.getText()));
                 tableModel.addContact(newContact);
-                setVisible(false);
-                dispose();
+            } else if (mode == MODE.EDIT_CONTACT) {
+                Contact newContact = new Contact(firstNameText.getText(),
+                                                 lastNameText.getText(),
+                                                 telephoneNumberText.getText(),
+                                                 addressText.getText(),
+                                                 Integer.parseInt(ageText.getText()));
+                tableModel.editContact(newContact, contactIndex);
             }
+
+            setVisible(false);
+            dispose();
         });
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(e -> {
@@ -67,7 +75,7 @@ public class NewEditContactFrame extends JFrame {
         pane.add(controlsPanel, BorderLayout.SOUTH);
     }
 
-    public void addContactInfo(Container pane, Persona p) {
+    public void addContactInfo(Container pane, Contact p) {
         JPanel contactInfoPanel = new JPanel();
         GridLayout gridLayout = new GridLayout(5, 2);
         contactInfoPanel.setLayout(gridLayout);
@@ -75,7 +83,7 @@ public class NewEditContactFrame extends JFrame {
         JLabel firstNameLabel = new JLabel("First Name:");
         firstNameText = new JTextField();
         if (p != null)
-            firstNameText.setText(p.getNome());
+            firstNameText.setText(p.getFirstName());
 
         contactInfoPanel.add(firstNameLabel);
         contactInfoPanel.add(firstNameText);
@@ -83,7 +91,7 @@ public class NewEditContactFrame extends JFrame {
         JLabel lastNameLabel = new JLabel("Last Name:");
         lastNameText = new JTextField();
         if (p != null) {
-            lastNameText.setText(p.getCognome());
+            lastNameText.setText(p.getLastName());
         }
 
         contactInfoPanel.add(lastNameLabel);
@@ -92,7 +100,7 @@ public class NewEditContactFrame extends JFrame {
         JLabel telephoneNumberLabel = new JLabel("Telephone Number:");
         telephoneNumberText = new JTextField();
         if (p != null) {
-            telephoneNumberText.setText(p.getTelefono());
+            telephoneNumberText.setText(p.getTelephoneNumber());
         }
 
         contactInfoPanel.add(telephoneNumberLabel);
@@ -101,7 +109,7 @@ public class NewEditContactFrame extends JFrame {
         JLabel addressLabel = new JLabel("Address:");
         addressText = new JTextField();
         if (p != null) {
-            addressText.setText(p.getIndirizzo());
+            addressText.setText(p.getAddress());
         }
 
         contactInfoPanel.add(addressLabel);
@@ -110,7 +118,7 @@ public class NewEditContactFrame extends JFrame {
         JLabel ageLabel = new JLabel("Età:");
         ageText = new JTextField();
         if (p != null) {
-            ageText.setText(String.valueOf(p.getEta()));
+            ageText.setText(String.valueOf(p.getAge()));
         }
 
         contactInfoPanel.add(ageLabel);
