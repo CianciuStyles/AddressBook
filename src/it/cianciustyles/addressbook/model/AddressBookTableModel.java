@@ -4,12 +4,12 @@ import javax.swing.table.AbstractTableModel;
 import java.util.Vector;
 
 public class AddressBookTableModel extends AbstractTableModel {
-    private Vector<String> columnNames;
-    private Vector<Contact> contacts;
+    private final Vector<String> columnNames;
+    private final Vector<Contact> contacts;
 
-    public static final int FIRST_NAME_INDEX = 0;
-    public static final int LAST_NAME_INDEX = 1;
-    public static final int TELEPHONE_NUMBER_INDEX = 2;
+    private static final int FIRST_NAME_INDEX = 0;
+    private static final int LAST_NAME_INDEX = 1;
+    private static final int TELEPHONE_NUMBER_INDEX = 2;
 
     public AddressBookTableModel() {
         columnNames = new Vector<>();

@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AddressBookFrame extends JFrame {
-    AddressBookTableModel tableModel;
-    JTable addressBookTable;
+    private AddressBookTableModel tableModel;
+    private JTable addressBookTable;
 
     public AddressBookFrame() {
         // Initialize the JFrame
@@ -28,7 +28,7 @@ public class AddressBookFrame extends JFrame {
         addButtons(pane);
     }
 
-    public void addButtons(Container pane) {
+    private void addButtons(Container pane) {
         JPanel controlsContainer = new JPanel();
         FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER);
         controlsContainer.setLayout(flowLayout);
@@ -75,7 +75,7 @@ public class AddressBookFrame extends JFrame {
         pane.add(controlsContainer, BorderLayout.SOUTH);
     }
 
-    public void addTable(Container pane) {
+    private void addTable(Container pane) {
         JPanel tableContainer = new JPanel();
         tableModel = new AddressBookTableModel();
         addressBookTable = new JTable(tableModel);

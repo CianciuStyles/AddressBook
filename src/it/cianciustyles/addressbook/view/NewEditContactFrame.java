@@ -8,8 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class NewEditContactFrame extends JFrame {
-    private AddressBookTableModel tableModel;
-    private int contactIndex;
+    private final AddressBookTableModel tableModel;
+    private final int contactIndex;
 
     private JTextField firstNameText;
     private JTextField lastNameText;
@@ -18,7 +18,7 @@ public class NewEditContactFrame extends JFrame {
     private JTextField ageText;
 
     private enum MODE{NEW_CONTACT, EDIT_CONTACT}
-    private MODE mode;
+    private final MODE mode;
 
 
     public NewEditContactFrame(AddressBookTableModel tm, Contact p, int ci) {
@@ -76,7 +76,7 @@ public class NewEditContactFrame extends JFrame {
         pane.add(controlsPanel, BorderLayout.SOUTH);
     }
 
-    public void addContactInfo(Container pane, Contact p) {
+    private void addContactInfo(Container pane, Contact p) {
         JPanel contactInfoPanel = new JPanel();
         contactInfoPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         GridLayout gridLayout = new GridLayout(5, 2);

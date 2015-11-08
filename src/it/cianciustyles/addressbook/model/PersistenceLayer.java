@@ -6,7 +6,7 @@ import java.io.PrintStream;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class PersistenceLayer {
+class PersistenceLayer {
     public static Vector<Contact> loadContacts() {
         Vector<Contact> contacts = new Vector<>();
 
