@@ -54,4 +54,13 @@ public class Persona {
     public void setEta(int eta) {
         this.eta = eta;
     }
+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() +
+                ", Cognome: " + getCognome() +
+                ", Telefono: " + getTelefono() +
+                ", Indirizzo: " + getIndirizzo() +
+                ", Età: " + getEta();
+    }
 }

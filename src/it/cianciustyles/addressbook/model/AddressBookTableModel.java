@@ -55,4 +55,13 @@ public class AddressBookTableModel extends AbstractTableModel {
     public Class getColumnClass(int column) {
         return String.class;
     }
+
+    public Persona getContact(int index) {
+        return contacts.get(index);
+    }
+
+    public void addContact(Persona p) {
+        this.contacts.add(p);
+        fireTableRowsInserted(contacts.size() - 1, contacts.size() - 1);
+    }
 }

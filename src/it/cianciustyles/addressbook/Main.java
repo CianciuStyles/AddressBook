@@ -1,10 +1,10 @@
 package it.cianciustyles.addressbook;
 
-import it.cianciustyles.addressbook.view.AddressBook;
+import it.cianciustyles.addressbook.view.AddressBookFrame;
 
 public class Main {
     public static void main(String[] args) {
-        AddressBook addressBook = new AddressBook();
+        AddressBookFrame addressBook = new AddressBookFrame();
         addressBook.setVisible(true);
     }
 }
