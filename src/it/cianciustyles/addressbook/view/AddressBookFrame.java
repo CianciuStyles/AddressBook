@@ -3,22 +3,38 @@ package it.cianciustyles.addressbook.view;
 import it.cianciustyles.addressbook.model.AddressBookTableModel;
 import it.cianciustyles.addressbook.model.Contact;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
 
 public class AddressBookFrame extends JFrame {
     private AddressBookTableModel tableModel;
     private JTable addressBookTable;
 
-    private ActionListener newContactListener = e -> {
+    private final ActionListener newContactListener = e -> {
         NewEditContactFrame newContactFrame = new NewEditContactFrame(tableModel, null, -1);
         newContactFrame.setVisible(true);
     };
 
-    private ActionListener editContactListener = e -> {
+    private final ActionListener editContactListener = e -> {
         int rowSelected = addressBookTable.getSelectedRow();
         if (rowSelected == -1) {
             JOptionPane.showMessageDialog(this, "Please select a contact to be edited!", "Edit Contact...", JOptionPane.ERROR_MESSAGE);
@@ -30,7 +46,7 @@ public class AddressBookFrame extends JFrame {
         editContactFrame.setVisible(true);
     };
 
-    private ActionListener deleteContactListener = e -> {
+    private final ActionListener deleteContactListener = e -> {
         int rowSelected = addressBookTable.getSelectedRow();
         if (rowSelected == -1) {
             JOptionPane.showMessageDialog(this, "Please select a contact to be deleted!", "Delete Contact...", JOptionPane.ERROR_MESSAGE);
@@ -45,15 +61,16 @@ public class AddressBookFrame extends JFrame {
             tableModel.deleteContact(rowSelected);
     };
 
-    private ActionListener quitListener = e -> {
+    private final ActionListener quitListener = e -> {
         setVisible(false);
         dispose();
         System.exit(0);
     };
 
-    private ActionListener aboutListener = e -> {
-        JOptionPane.showMessageDialog(this, "AddressBook has been written by Stefano Cianciulli for the InfoSons hiring process.", "About this program", JOptionPane.INFORMATION_MESSAGE);
-    };
+    private final ActionListener aboutListener = e -> JOptionPane.showMessageDialog(this,
+                                                                                    "AddressBook has been written by Stefano Cianciulli for the InfoSons hiring process.",
+                                                                                    "About this program",
+                                                                                    JOptionPane.INFORMATION_MESSAGE);
 
     public AddressBookFrame() {
         // Initialize the JFrame

@@ -3,9 +3,18 @@ package it.cianciustyles.addressbook.view;
 import it.cianciustyles.addressbook.model.AddressBookTableModel;
 import it.cianciustyles.addressbook.model.Contact;
 
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import java.awt.*;
 
 public class NewEditContactFrame extends JFrame {
     private final AddressBookTableModel tableModel;
@@ -65,6 +74,7 @@ public class NewEditContactFrame extends JFrame {
             setVisible(false);
             dispose();
         });
+
         JButton cancelButton = new JButton("Cancel");
         cancelButton.addActionListener(e -> {
             setVisible(false);

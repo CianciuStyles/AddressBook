@@ -1,11 +1,11 @@
 package it.cianciustyles.addressbook.model;
 
 public class Contact {
-    private String firstName;
-    private String lastName;
-    private String address;
-    private String telephoneNumber;
-    private int age;
+    private final String firstName;
+    private final String lastName;
+    private final String address;
+    private final String telephoneNumber;
+    private final int age;
 
     public Contact(String fn, String ln, String ad, String tn, int ag) {
         this.firstName = fn;
@@ -19,40 +19,20 @@ public class Contact {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getTelephoneNumber() {
         return telephoneNumber;
     }
 
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
-    }
-
     public int getAge() {
         return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
     }
 
     @Override
